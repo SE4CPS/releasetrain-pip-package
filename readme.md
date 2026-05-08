@@ -10,9 +10,18 @@ PackageUpdateSearch is an installable Python package (Hatchling / PEP 621) that:
 
 Layout: **`src/PackageUpdateSearch/`** (`RT.py`, `app.py`, `agenticRT.py`). There is no top-level **`cli.py`**; the CLI is the **`app`** module.
 
+TestPyPi Project : https://test.pypi.org/project/PackageUpdateSearch/
+
 ![CLI Overview flowchart](Flowchart/CLI_FlowDiagram.png)
 
 ---
+
+## Ownership and repository guidance
+
+- **TestPyPI roles:** Dr. Berhe is the owner of the TestPyPI project for `PackageUpdateSearch`. Student contributors are designated as maintainers for the project.
+- **Owner role:** Has full project control on TestPyPI, including uploading releases, managing release metadata, and updating package settings.
+- **Maintainer role:** Can upload new distributions and manage package releases, but does not have the full administrative privileges of the owner or ability to manage other Students' roles.
+- **Single codebase:** This repository is the source code and package build for `PackageUpdateSearch`. The code here is what is built and uploaded to TestPyPI—there is no separate repository or parallel codebase used for publishing.
 
 ## Installation and dependencies
 
