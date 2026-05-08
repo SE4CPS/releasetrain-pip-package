@@ -10,6 +10,8 @@ PackageUpdateSearch is an installable Python package (Hatchling / PEP 621) that:
 
 Layout: **`src/PackageUpdateSearch/`** (`RT.py`, `app.py`, `agenticRT.py`). There is no top-level **`cli.py`**; the CLI is the **`app`** module.
 
+![CLI Overview flowchart](Flowchart/CLI_FlowDiagram.png)
+
 ---
 
 ## Installation and dependencies
@@ -112,6 +114,8 @@ Goodbye!
 (or Ctrl+C at an empty prompt to exit with **“Goodbye!”**)
 
 ### `agent-update` (Ollama)
+
+![Agent error handling flowchart overview](Flowchart/AgentErrorHandling.png)
 
 Starts the interactive agent (**`AgentUpdate.agent_update_conversation`**). Requires **Ollama** listening on **`http://localhost:11434`** and a pulled chat model (repo uses **`llama3.2:3b`**).
 
