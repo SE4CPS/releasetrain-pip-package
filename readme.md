@@ -282,3 +282,9 @@ TOOL_REGISTRY = {
 ## Summary
 
 **`pyproject.toml`** dependencies, **`RT.Update`** + ReleaseTrain, **`app`** interactive CLI with step-by-step **CLI examples (in use)** above, **`AgentUpdate`** + Ollama **`llama3.2:3b`**, optional link listing from the last tool message before the model reply.
+
+---
+
+## License
+
+MIT. See [LICENSE](LICENSE).
