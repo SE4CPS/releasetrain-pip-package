@@ -4,7 +4,7 @@
 
 PackageUpdateSearch is an installable Python package (Hatchling / PEP 621) that:
 
-- Fetches Reddit posts via the ReleaseTrain HTTP API (`Update.package_update` in **`RT.py`**).
+- Fetches Reddit posts via the releasetrain HTTP API (`Update.package_update` in **`RT.py`**).
 - Exposes an **interactive CLI** (`PackageUpdateSearch.app`) built on **`argparse`** subcommands.
 - Optionally runs an **Ollama** agent (**`agenticRT.py`**) with **`llama3.2:3b`** and native **`tools=[Update.package_update]`**, with **`TOOL_REGISTRY`** restricting which Python callables run.
 
@@ -16,12 +16,6 @@ TestPyPi Project : https://test.pypi.org/project/PackageUpdateSearch/
 
 ---
 
-## Ownership and repository guidance
-
-- **TestPyPI roles:** Dr. Berhe is the owner of the TestPyPI project for `PackageUpdateSearch`. Student contributors are designated as maintainers for the project.
-- **Owner role:** Has full project control on TestPyPI, including uploading releases, managing release metadata, and updating package settings.
-- **Maintainer role:** Can upload new distributions and manage package releases, but does not have the full administrative privileges of the owner or ability to manage other Students' roles.
-- **Single codebase:** This repository is the source code and package build for `PackageUpdateSearch`. The code here is what is built and uploaded to TestPyPI—there is no separate repository or parallel codebase used for publishing.
 
 ## Installation and dependencies
 
@@ -46,7 +40,7 @@ python -m PackageUpdateSearch.app
 
 The interactive CLI prints a welcome line and **`print_help()`**, then reads lines like **`> package-update ...`** until **`exit`** or Ctrl+C. Each line is split on whitespace for **`argparse`** (values such as **`python,programming`** for **`--q`** stay a single token after the flag).
 
-**Version:** the parser supports **`-v` / `--version`**, but **`main()`** does not parse **`sys.argv`**—use the CLI session (e.g. **`> -v`**) so **`handle_command`** runs **`parse_args`** on that line.
+**Version:** the parser supports **`-v` / `--version`**, but **`main()`** does not parse **`sys.argv`**: use the CLI session (e.g. **`> -v`**) so **`handle_command`** runs **`parse_args`** on that line.
 
 ---
 
@@ -65,7 +59,7 @@ $ python -m PackageUpdateSearch.app
 ===Welcome to the PackageUpdateSearch CLI!==
 
 Available commands:
-  package-update  - Fetch and format ReleaseTrain Reddit posts
+  package-update  - Fetch and format releasetrain Reddit posts
   help            - Show this help message
   -v              - Show PackageUpdateSearch CLI version information
   agent-update    - Start an agent conversation about Reddit updates
@@ -165,7 +159,7 @@ These import **`PackageUpdateSearch`** the same way an end user would after **`p
 | `help` | **`print_help()`** command list. |
 | `exit` | Ends the session. |
 
-**Subparsers `get-request` and `capstone`** are registered (so **`get-request --help`** works) but **`handle_command`** does not implement those branches yet—they parse but perform no action.
+**Subparsers `get-request` and `capstone`** are registered (so **`get-request --help`** works) but **`handle_command`** does not implement those branches yet: they parse but perform no action.
 
 **`print_help()`** advertises **`package-update`**, **`help`**, **`-v`**, **`agent-update`**, **`exit`** (not **`get-request`** / **`capstone`**).
 
@@ -196,7 +190,7 @@ If **`data`** is **`null`**, **`[]`**, or missing in a way that yields no list i
 - `Currently unable to search updates <Response data is None:> ...`
 - `Currently unable to search updates <Response data is empty:> ...`
 
-(not formatted post blocks). ReleaseTrain can return **`200`** with **`data: []`** when nothing is indexed for the query (e.g. casing / subreddit not in index).
+(not formatted post blocks). releasetrain can return **`200`** with **`data: []`** when nothing is indexed for the query (e.g. casing / subreddit not in index).
 
 ### Non-200
 
@@ -250,7 +244,7 @@ AgentUpdate.agent_update_conversation(SYSTEM_PROMPT, TOOL_REGISTRY)
 
 ### `SYSTEM_PROMPT`
 
-Defines Mode 1 (tool calling) vs Mode 2 (summarization after **`tool`**), empty-result handling for ReleaseTrain advisory strings, anti-hallucination / Reddit URL rules, etc.
+Defines Mode 1 (tool calling) vs Mode 2 (summarization after **`tool`**), empty-result handling for releasetrain advisory strings, anti-hallucination / Reddit URL rules, etc.
 
 ### Tool registry
 
@@ -264,7 +258,7 @@ TOOL_REGISTRY = {
 
 ## Agent loop (simplified)
 
-1. **`is_ollama_running()`** — else print help and return.
+1. **`is_ollama_running()`**: else print help and return.
 2. **`client.chat`** → append assistant message.
 3. If **`tool_calls`**: execute tools, append **`tool`** contents, **`continue`**.
 4. Else: **`extract_urls_from_tool_result(messages)`** → print link block if present → **`print(response.message.content)`**.
@@ -281,7 +275,7 @@ TOOL_REGISTRY = {
 
 ## Summary
 
-**`pyproject.toml`** dependencies, **`RT.Update`** + ReleaseTrain, **`app`** interactive CLI with step-by-step **CLI examples (in use)** above, **`AgentUpdate`** + Ollama **`llama3.2:3b`**, optional link listing from the last tool message before the model reply.
+**`pyproject.toml`** dependencies, **`RT.Update`** + releasetrain, **`app`** interactive CLI with step-by-step **CLI examples (in use)** above, **`AgentUpdate`** + Ollama **`llama3.2:3b`**, optional link listing from the last tool message before the model reply.
 
 ---
 
